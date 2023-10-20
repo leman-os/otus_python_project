@@ -4,7 +4,7 @@ pipeline {
 		stage ("Git checkout"){
 			steps {
 				git branch: "master",
-					url: "https://github.com/PrabhuVignesh/movie-crud-flask.git"
+					url: "https://github.com/leman-os/otus_python_project.git"
 				sh "ls"
 			}
 		}
