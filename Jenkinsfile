@@ -42,6 +42,17 @@ pipeline {
 			steps{
 				sh "docker run --rm --volume \$(pwd) vickyrajagopal/python-taint-docker pyt ."
 			}
-		}					
+		}		
+		stage("Create PDF and Send to Telegram") {
+			steps {
+			        script {
+			            	def pdfFile = sh(script: "python create_pdf_script.py", returnStdout: true).trim()
+					def CHAT_ID = "-4034846321"
+					def TELEGRAM_BOT_TOKEN = "6736380758:AAEk-JiTfhLRHJQH99d2AJf1pjeJf0Vv9K4"
+			            	sh "python send_to_telegram_script.py $pdfFile $CHAT_ID $TELEGRAM_BOT_TOKEN"
+			        }
+    }
+}
+
 	}
 }
