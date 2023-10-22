@@ -24,16 +24,19 @@ pipeline {
 				sh "docker run --rm --volume \$(pwd) secfigo/bandit:latest"
 			}
 		}
-		stage ("Dependency Check with Python Safety"){
-			script {
-				try {
-					sh "docker run --rm --volume \$(pwd) pyupio/safety:latest safety check"
-					sh "docker run --rm --volume \$(pwd) pyupio/safety:latest safety check --json > report.json"
-				} catch (Exception e) {
-					currentBuild.result = 'UNSTABLE'
-					echo "Dependency Check failed, but the pipeline will continue"
-					echo "Error details: ${e.getMessage()}"
+		stage("Dependency Check with Python Safety") {
+			steps {
+				script {
+					try {
+						sh "docker run --rm --volume \$(pwd) pyupio/safety:latest safety check"
+						sh "docker run --rm --volume \$(pwd) pyupio/safety:latest safety check --json > report.json"
+					} catch (Exception e) {
+						currentBuild.result = 'UNSTABLE'
+						echo "Dependency Check failed, but the pipeline will continue"
+						echo "Error details: ${e.getMessage()}"
+					}
 				}
+			}
 		}
 		stage ("Static Analysis with python-taint"){
 			steps{
