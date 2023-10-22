@@ -1,8 +1,7 @@
-stage("Create PDF and Send to Telegram") {
-    steps {
-        script {
-            def pdfFile = sh(script: "python create_pdf_script.py", returnStdout: true).trim()
-            sh "python send_to_telegram_script.py $pdfFile $CHAT_ID $TELEGRAM_BOT_TOKEN"
-        }
-    }
-}
+# Пример скрипта для отправки файла в Telegram
+from telegram import Bot
+from telegram import InputFile
+
+def send_to_telegram(pdf_filename, chat_id, bot_token):
+    bot = Bot(token=bot_token)
+    bot.send_document(chat_id=chat_id, document=open(pdf_filename, 'rb'))
