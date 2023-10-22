@@ -1,6 +1,7 @@
 # Пример скрипта для отправки файла в Telegram
 from telegram import Bot
 from telegram import InputFile
+import asyncio
 
 def send_to_telegram(pdf_filename, chat_id, bot_token):
   bot = Bot(token=bot_token)
