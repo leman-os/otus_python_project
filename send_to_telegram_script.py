@@ -14,7 +14,7 @@ import asyncio
 
 
 #import asyncio
-#from telegram import Bot
+#from telegram import Botc
 
 async def send_to_telegram(message_text, chat_id, bot_token):
     bot = Bot(token=bot_token)
