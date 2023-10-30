@@ -19,5 +19,4 @@ import asyncio
 async def send_to_telegram(message_text, chat_id, bot_token):
     bot = Bot(token=bot_token)
     await bot.send_message(chat_id=chat_id, text=message_text)
-asyncio.run(send_to_telegram("Pipeline done!!!", "-4034846321", "6736380758:AAEk-JiTfhLRHJQH99d2AJf1pjeJf0Vv9K4"))
-
+    asyncio.run(send_to_telegram("Pipeline done!!!", "-4034846321", "6736380758:AAEk-JiTfhLRHJQH99d2AJf1pjeJf0Vv9K4"))
